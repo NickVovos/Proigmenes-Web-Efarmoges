@@ -1,0 +1,112 @@
+<h2 class="mb-4">Add New Graduate</h2>
+
+<form [formGroup]="graduateForm" (ngSubmit)="submit()" class="needs-validation">
+  <!-- Basic Info -->
+  <fieldset class="mb-4 border rounded p-3">
+    <legend class="float-none w-auto px-2">Basic Information</legend>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <input formControlName="firstName" type="text" class="form-control" placeholder="First Name" />
+      </div>
+      <div class="col-md-6">
+        <input formControlName="lastName" type="text" class="form-control" placeholder="Last Name" />
+      </div>
+      <div class="col-md-6">
+        <input formControlName="academicEntryYear" type="number" class="form-control" placeholder="Academic Entry Year" />
+      </div>
+      <div class="col-md-6">
+        <input formControlName="graduationDate" type="date" class="form-control" />
+      </div>
+      <div class="col-md-6">
+        <input formControlName="degreeGrade" type="number" step="0.01" class="form-control" placeholder="Degree Grade" />
+      </div>
+      <div class="col-md-6">
+        <input formControlName="email" type="email" class="form-control" placeholder="Email" />
+      </div>
+      <div class="col-md-12">
+        <input formControlName="personalWebsite" type="text" class="form-control" placeholder="Personal Website" />
+      </div>
+    </div>
+  </fieldset>
+
+  <!-- Phones -->
+  <fieldset class="mb-4 border rounded p-3">
+    <legend class="float-none w-auto px-2">Phones</legend>
+    <div formArrayName="phones" class="mb-2">
+      <div *ngFor="let phone of phones.controls; let i = index" [formGroupName]="i" class="row g-2 mb-2 align-items-center">
+        <div class="col-md-5">
+          <input formControlName="number" class="form-control" placeholder="Phone Number" />
+        </div>
+        <div class="col-md-5">
+          <input formControlName="type" class="form-control" placeholder="Type" />
+        </div>
+        <div class="col-md-2 text-end">
+          <button type="button" class="btn btn-outline-danger btn-sm" (click)="phones.removeAt(i)">Remove</button>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-sm btn-outline-primary" (click)="addPhone()">Add Phone</button>
+  </fieldset>
+
+  <!-- Social Media -->
+  <fieldset class="mb-4 border rounded p-3">
+    <legend class="float-none w-auto px-2">Social Media</legend>
+    <div *ngIf="socialMedias.controls.length > 0" formArrayName="socialMedias">
+      <div *ngFor="let sm of socialMedias.controls; let i = index" [formGroupName]="i">
+        <input formControlName="type" placeholder="Platform" class="form-control" />
+        <input formControlName="url" placeholder="URL" class="form-control" />
+      </div>
+    </div>
+    <button type="button" class="btn btn-sm btn-outline-primary" (click)="addSocialMedia()">Add Social Media</button>
+  </fieldset>
+
+  <!-- Employments -->
+  <fieldset class="mb-4 border rounded p-3">
+    <legend class="float-none w-auto px-2">Employments</legend>
+    <div formArrayName="employments" class="mb-2">
+      <div *ngFor="let emp of employments.controls; let i = index" [formGroupName]="i" class="border p-3 mb-3 rounded">
+        <div class="row g-2">
+          <div class="col-md-6">
+            <input formControlName="organization" class="form-control" placeholder="Organization" />
+          </div>
+          <div class="col-md-6">
+            <input formControlName="organizationSite" class="form-control" placeholder="Site" />
+          </div>
+          <div class="col-md-6">
+            <input formControlName="from" type="date" class="form-control" placeholder="From" />
+          </div>
+          <div class="col-md-6">
+            <input formControlName="to" type="date" class="form-control" placeholder="To" />
+          </div>
+          <div class="col-md-6">
+            <input formControlName="jobType" class="form-control" placeholder="Job Type" />
+          </div>
+          <div class="col-md-6">
+            <input formControlName="jobDescription" class="form-control" placeholder="Job Description" />
+          </div>
+          <div class="col-md-12">
+            <input formControlName="relatedField" class="form-control" placeholder="Related Field" />
+          </div>
+        </div>
+        <div formGroupName="geoLocation" class="row g-2 mt-2">
+          <div class="col-md-6">
+            <input formControlName="latitude" type="number" class="form-control" placeholder="Latitude" />
+          </div>
+          <div class="col-md-6">
+            <input formControlName="longitude" type="number" class="form-control" placeholder="Longitude" />
+          </div>
+        </div>
+        <div class="text-end mt-2">
+          <button type="button" class="btn btn-outline-danger btn-sm" (click)="employments.removeAt(i)">Remove Employment</button>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-sm btn-outline-primary" (click)="addEmployment()">Add Employment</button>
+  </fieldset>
+
+  <!-- Buttons -->
+  <div class="d-flex justify-content-end gap-2">
+    <button type="submit" class="btn btn-primary" [disabled]="graduateForm.invalid">Submit</button>
+    <button type="button" class="btn btn-secondary" (click)="cancelled.emit()">Cancel</button>
+  </div>
+</form>

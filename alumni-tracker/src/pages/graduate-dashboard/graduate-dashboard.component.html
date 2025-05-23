@@ -1,0 +1,168 @@
+<!-- graduate-dashboard.component.html -->
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+  rel="stylesheet"
+/>
+
+<style>
+  body {
+    background-color: #f2f6fc;
+  }
+
+  .card-rounded {
+    border-radius: 1rem;
+  }
+
+  .section-title {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .table th,
+  .table td {
+    vertical-align: middle;
+  }
+
+  .bg-soft {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.05);
+  }
+</style>
+
+<div class="container py-5">
+  <div class="text-center mb-5">
+    <h1 class="fw-bold text-primary display-5 mb-1">🎓 Οι Απόφοιτοί Μου</h1>
+    <p class="text-muted">Διαχειριστείτε τους απόφοιτους και τις θέσεις εργασίας τους</p>
+  </div>
+
+  <div class="bg-soft mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5 class="section-title m-0">
+        <i class="bi bi-funnel"></i> Φίλτρα Αναζήτησης
+      </h5>
+      <div>
+        <button class="btn btn-success me-2" (click)="openModal()">
+          <i class="bi bi-plus-lg"></i> Νέος Απόφοιτος
+        </button>
+        <button class="btn btn-sm btn-outline-primary" (click)="applyFilters()">
+          <i class="bi bi-search"></i> Εφαρμογή
+        </button>
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-md-4 col-lg-3">
+        <input type="text" class="form-control" placeholder="Όνομα" [(ngModel)]="firstName" />
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <input type="text" class="form-control" placeholder="Επώνυμο" [(ngModel)]="lastName" />
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <input type="email" class="form-control" placeholder="Email" [(ngModel)]="email" />
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <input type="number" class="form-control" placeholder="Έτος αποφοίτησης" [(ngModel)]="graduationYear" />
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <input type="number" class="form-control" placeholder="Βαθμός" [(ngModel)]="degreeGrade" />
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-soft mb-4">
+    <h5 class="section-title mb-3">
+      <i class="bi bi-people"></i> Λίστα Αποφοίτων
+       <span class="badge bg-primary fs-6">{{ totalGraduates }}</span>
+    </h5>
+   
+    <div class="table-responsive">
+      <table class="table table-hover align-middle">
+        <thead class="table-primary text-center">
+          <tr>
+            <th>Όνομα</th>
+            <th>Email</th>
+            <th>Αποφοίτηση</th>
+            <th>Βαθμός</th>
+            <th>Ενέργειες</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="graduates.length > 0; else noGrads">
+          <tr *ngFor="let grad of graduates" [class.fw-bold]="grad.userId === currentUserId">
+            <td>{{ grad.firstName }} {{ grad.lastName }}</td>
+            <td>{{ grad.email }}</td>
+            <td>{{ grad.graduationDate | date }}</td>
+            <td>{{ grad.degreeGrade }}</td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-outline-primary me-2" (click)="editGraduate(grad)">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn btn-sm btn-outline-danger" (click)="deleteGraduate(grad.id)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #noGrads>
+      <div class="alert alert-warning text-center mt-4" role="alert">
+        Δεν βρέθηκαν απόφοιτοι για τον χρήστη.
+      </div>
+    </ng-template>
+
+    <nav *ngIf="totalPages.length > 1" class="mt-3">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <button class="page-link" (click)="setPage(currentPage - 1)">
+            &laquo;
+          </button>
+        </li>
+        <li class="page-item" *ngFor="let page of totalPages" [class.active]="currentPage === page">
+          <button class="page-link" (click)="setPage(page)">
+            {{ page }}
+          </button>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages.length">
+          <button class="page-link" (click)="setPage(currentPage + 1)">
+            &raquo;
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="bg-soft">
+    <h5 class="section-title mb-3">
+      <i class="bi bi-geo-alt-fill"></i> Χάρτης Θέσεων Εργασίας
+    </h5>
+    <div class="rounded overflow-hidden border" style="min-height: 400px;">
+      <app-graduates-map [graduates]="graduates" [currentUserId]="currentUserId"></app-graduates-map>
+    </div>
+  </div>
+
+  <div class="modal fade show d-block" *ngIf="creatingGraduate" tabindex="-1" role="dialog" style="background: rgba(0, 0, 0, 0.5);">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Προσθήκη Απόφοιτου</h5>
+        <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+      </div>
+     <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+      <app-new-graduate
+        [graduate]="selectedGraduate"
+        (submitted)="onGraduateCreated()"
+        (cancelled)="closeModal()"
+      ></app-new-graduate>
+    </div>
+    </div>
+  </div>
+</div>
+
+</div>
