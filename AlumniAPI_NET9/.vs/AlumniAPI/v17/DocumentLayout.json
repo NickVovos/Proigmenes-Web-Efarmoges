@@ -1,10 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\nvovo\\Downloads\\AlumniAPI_NET9\\",
+  "WorkspaceRootPath": "T:\\Master\\Proigmenes-Web-Efarmoges\\AlumniAPI_NET9\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DD444BB1-9246-AE41-5D73-3E44686EE8D9}|AlumniAPI.csproj|c:\\users\\nvovo\\downloads\\alumniapi_net9\\controllers\\graduatescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{DD444BB1-9246-AE41-5D73-3E44686EE8D9}|AlumniAPI.csproj|t:\\master\\proigmenes-web-efarmoges\\alumniapi_net9\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD444BB1-9246-AE41-5D73-3E44686EE8D9}|AlumniAPI.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD444BB1-9246-AE41-5D73-3E44686EE8D9}|AlumniAPI.csproj|t:\\master\\proigmenes-web-efarmoges\\alumniapi_net9\\controllers\\graduatescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD444BB1-9246-AE41-5D73-3E44686EE8D9}|AlumniAPI.csproj|solutionrelative:controllers\\graduatescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD444BB1-9246-AE41-5D73-3E44686EE8D9}|AlumniAPI.csproj|t:\\master\\proigmenes-web-efarmoges\\alumniapi_net9\\resource\\graduatefulldata_english.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{DD444BB1-9246-AE41-5D73-3E44686EE8D9}|AlumniAPI.csproj|solutionrelative:resource\\graduatefulldata_english.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -75,14 +83,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "GraduatesController.cs",
-              "DocumentMoniker": "C:\\Users\\nvovo\\Downloads\\AlumniAPI_NET9\\Controllers\\GraduatesController.cs",
-              "RelativeDocumentMoniker": "Controllers\\GraduatesController.cs",
-              "ToolTip": "C:\\Users\\nvovo\\Downloads\\AlumniAPI_NET9\\Controllers\\GraduatesController.cs",
-              "RelativeToolTip": "Controllers\\GraduatesController.cs",
-              "ViewState": "AgIAAJ0AAAAAAAAAAAAwwLQAAAA0AAAAAAAAAA==",
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "T:\\Master\\Proigmenes-Web-Efarmoges\\AlumniAPI_NET9\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
+              "ToolTip": "T:\\Master\\Proigmenes-Web-Efarmoges\\AlumniAPI_NET9\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Controllers\\AccountController.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAAAGsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-23T11:56:07.809Z",
+              "WhenOpened": "2025-05-23T17:57:08.329Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GraduatesController.cs",
+              "DocumentMoniker": "T:\\Master\\Proigmenes-Web-Efarmoges\\AlumniAPI_NET9\\Controllers\\GraduatesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\GraduatesController.cs",
+              "ToolTip": "T:\\Master\\Proigmenes-Web-Efarmoges\\AlumniAPI_NET9\\Controllers\\GraduatesController.cs",
+              "RelativeToolTip": "Controllers\\GraduatesController.cs",
+              "ViewState": "AgIAAJAAAAAAAAAAAAAqwLEAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-23T17:50:50.495Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GraduateFullData_English.csv",
+              "DocumentMoniker": "T:\\Master\\Proigmenes-Web-Efarmoges\\AlumniAPI_NET9\\Resource\\GraduateFullData_English.csv",
+              "RelativeDocumentMoniker": "Resource\\GraduateFullData_English.csv",
+              "ToolTip": "T:\\Master\\Proigmenes-Web-Efarmoges\\AlumniAPI_NET9\\Resource\\GraduateFullData_English.csv",
+              "RelativeToolTip": "Resource\\GraduateFullData_English.csv",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
+              "WhenOpened": "2025-05-23T17:49:44.017Z",
               "EditorCaption": ""
             }
           ]

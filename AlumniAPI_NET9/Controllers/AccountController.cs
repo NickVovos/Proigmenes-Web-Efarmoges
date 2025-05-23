@@ -71,9 +71,37 @@ namespace AlumniAPI.Controllers
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
+        [HttpPost("register")]
+        public IActionResult Register([FromBody] RegisterRequest request)
+        {
+            if (_context.Users.Any(u => u.Username == request.Username))
+            {
+                return Conflict(new { error = "Username already exists" });
+            }
+
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(request.Password);
+
+            var user = new User
+            {
+                Username = request.Username,
+                PasswordHash = hashedPassword
+            };
+
+            _context.Users.Add(user);
+            _context.SaveChanges();
+
+            return Ok(new { message = "User registered successfully" });
+        }
     }
 
     public class LoginRequest
+    {
+        public string Username { get; set; } = "";
+        public string Password { get; set; } = "";
+    }
+
+    public class RegisterRequest
     {
         public string Username { get; set; } = "";
         public string Password { get; set; } = "";
