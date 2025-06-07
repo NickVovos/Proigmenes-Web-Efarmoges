@@ -9,7 +9,7 @@ namespace AlumniAPI.Services
     {
         public static void Seed(AlumniDbContext db)
         {
-            string path = @"C:\Users\nvovo\Downloads\AlumniAPI_NET9\Resource\GraduateFullData_English.csv";
+            string path = @"T:\Master\Proigmenes-Web-Efarmoges\AlumniAPI_NET9\Resource\GraduateFullData_English.csv";
             if (!File.Exists(path)) return;
 
             if (db.Graduates.Any()) return; // Skip if already seeded

@@ -88,14 +88,29 @@
             <input formControlName="relatedField" class="form-control" placeholder="Related Field" />
           </div>
         </div>
-        <div formGroupName="geoLocation" class="row g-2 mt-2">
-          <div class="col-md-6">
-            <input formControlName="latitude" type="number" class="form-control" placeholder="Latitude" />
-          </div>
-          <div class="col-md-6">
-            <input formControlName="longitude" type="number" class="form-control" placeholder="Longitude" />
-          </div>
+        <div formGroupName="address" class="row g-2 mt-2">
+        <div class="col-md-6">
+          <input formControlName="street" class="form-control" placeholder="Street" />
         </div>
+        <div class="col-md-6">
+          <input formControlName="number" class="form-control" placeholder="Number" />
+        </div>
+        <div class="col-md-6">
+          <input formControlName="city" class="form-control" placeholder="City" />
+        </div>
+        <div class="col-md-6">
+          <input formControlName="postalCode" class="form-control" placeholder="Postal Code" />
+        </div>
+        <div class="col-md-6">
+          <input formControlName="country" class="form-control" placeholder="Country" />
+        </div>
+        <div class="col-md-6">
+          <input formControlName="latitude" type="text" class="form-control" placeholder="Latitude" />
+        </div>
+        <div class="col-md-6">
+          <input formControlName="longitude" type="text" class="form-control" placeholder="Longitude" />
+        </div>
+      </div>
         <div class="text-end mt-2">
           <button type="button" class="btn btn-outline-danger btn-sm" (click)="employments.removeAt(i)">Remove Employment</button>
         </div>

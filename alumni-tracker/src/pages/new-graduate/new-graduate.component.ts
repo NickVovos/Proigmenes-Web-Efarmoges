@@ -97,7 +97,12 @@ ngOnChanges(changes: SimpleChanges): void {
       jobType: [''],
       jobDescription: [''],
       relatedField: [''],
-      geoLocation: this.fb.group({
+      address: this.fb.group({
+        street: [''],
+        number: [''],
+        city: [''],
+        postalCode: [''],
+        country: [''],
         latitude: [''],
         longitude: ['']
       })
@@ -164,7 +169,12 @@ ngOnChanges(changes: SimpleChanges): void {
       jobType: [e.jobType],
       jobDescription: [e.jobDescription],
       relatedField: [e.relatedField],
-      geoLocation: this.fb.group({
+      address: this.fb.group({
+        street: [e.address?.street ?? ''],
+        number: [e.address?.number ?? ''],
+        city: [e.address?.city ?? ''],
+        postalCode: [e.address?.postalCode ?? ''],
+        country: [e.address?.country ?? ''],
         latitude: [e.address?.latitude ?? ''],
         longitude: [e.address?.longitude ?? '']
       })

@@ -19,7 +19,7 @@ namespace AlumniAPI.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("mygraduates")]
         public async Task<ActionResult<IEnumerable<Graduate>>> GetMyGraduates()
         {
             try
@@ -168,23 +168,23 @@ namespace AlumniAPI.Controllers
             return Ok(graduate);
         }
 
-        [HttpGet()]
-        public async Task<ActionResult<Graduate>> GetGraduate()
-        {
-            var graduate = await _context.Graduates
-                .Include(g => g.Employments).ThenInclude(e => e.Address)
-                .Include(g => g.Phones)
-                .Include(g => g.SocialMedias)
-                .Include(g => g.User)
-                .FirstOrDefaultAsync();
+        //[HttpGet()]
+        //public async Task<ActionResult<Graduate>> GetGraduate()
+        //{
+        //    var graduate = await _context.Graduates
+        //        .Include(g => g.Employments).ThenInclude(e => e.Address)
+        //        .Include(g => g.Phones)
+        //        .Include(g => g.SocialMedias)
+        //        .Include(g => g.User)
+        //        .FirstOrDefaultAsync();
 
-            if (graduate == null) return NotFound();
+        //    if (graduate == null) return NotFound();
 
-            // Ensure employment history is ordered
-            graduate.Employments = graduate.Employments.OrderByDescending(e => e.From).ToList();
+        //    // Ensure employment history is ordered
+        //    graduate.Employments = graduate.Employments.OrderByDescending(e => e.From).ToList();
 
-            return Ok(graduate);
-        }
+        //    return Ok(graduate);
+        //}
 
 
         [HttpPut("{id}")]
