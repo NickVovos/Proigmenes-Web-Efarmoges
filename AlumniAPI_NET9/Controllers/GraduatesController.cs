@@ -84,7 +84,18 @@ namespace AlumniAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGraduate(int id)
         {
+
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            var graduate = await _context.Graduates
+                .Include(g => g.Employments).ThenInclude(e => e.Address)
+                .Include(g => g.Phones)
+                .Include(g => g.SocialMedias)
+                .Include(g => g.User)
+                .FirstOrDefaultAsync(g => g.Id == id && g.UserId == userId);
+
+            if (graduate == null) return NotFound();
+
             var grad = await _context.Graduates.FirstOrDefaultAsync(g => g.Id == id && g.UserId == userId);
             if (grad == null) return NotFound();
 
