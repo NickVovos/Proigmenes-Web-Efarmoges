@@ -23,12 +23,11 @@ namespace AlumniAPI
 
             // Configure EF Core with retry policy
             builder.Services.AddDbContext<AlumniDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ??
-                    "Data Source=localhost;Initial Catalog=AlumniDB;Integrated Security=True;TrustServerCertificate=True;",
-                    sqlOptions =>
-                    {
-                        sqlOptions.EnableRetryOnFailure();
-                    }));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), sqlOptions =>
+                {
+                    sqlOptions.EnableRetryOnFailure();
+                }));
+
 
             // JWT Authentication
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -46,19 +45,16 @@ namespace AlumniAPI
                 });
 
             // CORS
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAngular", policy =>
-                {
-                    policy.WithOrigins("http://localhost:4200")
-                          .AllowAnyHeader()
-                          .AllowAnyMethod();
-                });
-            });
+
 
             builder.Services.AddScoped<AuthService>();
 
             var app = builder.Build();
+
+            app.UseCors(policy =>
+           policy.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader());
 
             // Ensure database and tables are created (no migrations used)
             using (var scope = app.Services.CreateScope())

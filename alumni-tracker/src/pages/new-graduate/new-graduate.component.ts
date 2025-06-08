@@ -123,8 +123,8 @@ ngOnChanges(changes: SimpleChanges): void {
 
       const token = localStorage.getItem('token')!;
       const url = this.graduate?.id
-        ? `https://localhost:5001/api/graduates/${this.graduate.id}`
-        : 'https://localhost:5001/api/graduates';
+        ? `https://alumniapi20250607211620.azurewebsites.net/api/graduates/${this.graduate.id}`
+        : 'https://alumniapi20250607211620.azurewebsites.net/api/graduates';
 
       const request = this.graduate?.id
         ? this.http.put(url, data, { headers: { Authorization: 'Bearer ' + token } })

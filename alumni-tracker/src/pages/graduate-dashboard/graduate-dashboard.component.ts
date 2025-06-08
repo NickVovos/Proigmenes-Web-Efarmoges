@@ -58,7 +58,7 @@ export class GraduateDashboardComponent implements OnInit {
       this.loadAllGraduates(); // Load all graduates after charts ready
     });
 
-    this.http.get<{ total: number }>('https://localhost:5001/api/graduates/count', {
+    this.http.get<{ total: number }>('https://alumniapi20250607211620.azurewebsites.net/api/graduates/count', {
       headers: { Authorization: 'Bearer ' + localStorage.getItem('token')! }
     }).subscribe(response => {
       this.totalGraduates = response.total;
@@ -91,7 +91,7 @@ loadGoogleCharts(): Promise<void> {
 }
 
   getCurrentUserId() {
-    this.http.get<{ userId: number }>('https://localhost:5001/api/account/me', {
+    this.http.get<{ userId: number }>('https://alumniapi20250607211620.azurewebsites.net/api/account/me', {
       headers: { Authorization: 'Bearer ' + localStorage.getItem('token')! }
     }).subscribe({
       next: res => {
@@ -112,7 +112,7 @@ loadGoogleCharts(): Promise<void> {
     if (this.graduationYear) params = params.set('graduationYear', this.graduationYear.toString());
     if (this.degreeGrade) params = params.set('degreeGrade', this.degreeGrade.toString());
 
-    this.http.get<any>('https://localhost:5001/api/graduates/search', {
+    this.http.get<any>('https://alumniapi20250607211620.azurewebsites.net/api/graduates/search', {
       params,
       headers: { Authorization: 'Bearer ' + localStorage.getItem('token')! }
     }).subscribe({
@@ -128,7 +128,7 @@ loadGoogleCharts(): Promise<void> {
   }
 
   loadAllGraduates() {
-    this.http.get<Graduate[]>('https://localhost:5001/api/graduates/mygraduates', {
+    this.http.get<Graduate[]>('https://alumniapi20250607211620.azurewebsites.net/api/graduates/mygraduates', {
       headers: { Authorization: 'Bearer ' + localStorage.getItem('token')! }
     }).subscribe({
       next: res => {
@@ -159,7 +159,7 @@ loadGoogleCharts(): Promise<void> {
 
   deleteGraduate(id: number) {
     if (confirm('Are you sure you want to delete this graduate?')) {
-      this.http.delete(`https://localhost:5001/api/graduates/${id}`, {
+      this.http.delete(`https://alumniapi20250607211620.azurewebsites.net/api/graduates/${id}`, {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('token')!
         }
@@ -193,7 +193,7 @@ loadGoogleCharts(): Promise<void> {
   }
 
   editGraduate(grad: any) {
-    this.http.get(`https://localhost:5001/api/graduates/${grad.id}`, {
+    this.http.get(`https://alumniapi20250607211620.azurewebsites.net/api/graduates/${grad.id}`, {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('token')!
       }

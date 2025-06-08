@@ -20,7 +20,7 @@ export class RegisterComponent {
 
   register() {
     debugger;
-    this.http.post('https://localhost:5001/api/account/register', {
+    this.http.post('https://alumniapi20250607211620.azurewebsites.net/api/account/register', {
       username: this.username,
       password: this.password
     }).subscribe({

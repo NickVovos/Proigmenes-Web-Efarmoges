@@ -18,7 +18,7 @@ export class LoginComponent {
   constructor(private http: HttpClient, private router: Router) {}
 
   login() {
-    this.http.post<any>('https://localhost:5001/api/account/login', {
+    this.http.post<any>('https://alumniapi20250607211620.azurewebsites.net/api/account/login', {
       username: this.username,
       password: this.password
     }).subscribe({
