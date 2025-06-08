@@ -4,7 +4,8 @@
 ## Build results
 [Bb]in/
 [Oo]bj/
-
+.vscode/
+.vs/
 ## User-specific files
 *.user
 *.suo
